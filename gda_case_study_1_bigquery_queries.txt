@@ -1,0 +1,198 @@
+--create new table called full_year that combines data from tables from the past 12 months--
+
+CREATE TABLE
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year` AS 
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.january_2026`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.feb_2025`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.march_2025`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.april_2025`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.may_2025`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.june_2025_1`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.june_2025_2`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.july_2025_1`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.july_2025_2`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.august_2025_1`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.august_2025_2`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.september_2025_1`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.september_2025_2`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.october_2025_1`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.october_2025_2`
+UNION ALL
+SELECT *
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.november_2025`
+UNION ALL
+SELECT *
+FROM 
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.december_2025`
+
+-- calculate total rides for the year
+
+SELECT
+  member_casual,
+  COUNT(ride_id) as total_rides
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+GROUP BY
+  member_casual
+
+-- calculate monthly ride totals for members and non members from 02-2025 through 01-2026
+
+SELECT 
+  member_casual,
+  count(ride_id) as total_rides,
+  extract(month from started_at) as month
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+GROUP BY
+  member_casual,
+  month
+ORDER BY
+  member_casual,
+  month
+
+-- caluclate average ride time for casual riders and members for the year
+SELECT
+  member_casual,
+  TIME(
+    CAST(FLOOR(avg_seconds / 3600) AS INT64),
+    CAST(FLOOR(MOD(CAST(avg_seconds AS INT64), 3600) / 60) AS INT64),
+    CAST(MOD(CAST(avg_seconds AS INT64), 60) AS INT64)
+  ) AS avg_time
+FROM (
+  SELECT
+    member_casual,
+    AVG(TIME_DIFF(trip_duration, TIME "00:00:00", SECOND)) AS avg_seconds
+  FROM
+    `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+  GROUP BY
+    member_casual
+)
+
+-- caluclate monthly average ride times for casual riders and members 
+
+SELECT
+  member_casual,
+  month,
+  TIME(
+    CAST(FLOOR(avg_seconds / 3600) AS INT64),
+    CAST(FLOOR(MOD(CAST(avg_seconds AS INT64), 3600) / 60) AS INT64),
+    CAST(MOD(CAST(avg_seconds AS INT64), 60) AS INT64)
+  ) AS avg_time
+FROM (
+  SELECT
+    member_casual,
+    extract(month from started_at) as month,
+    AVG(TIME_DIFF(trip_duration, TIME "00:00:00", SECOND)) AS avg_seconds
+  FROM
+    `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+  GROUP BY
+    member_casual,
+    month
+  ORDER BY 
+    month asc
+)
+
+-- Calculate the most popular day and time to ride in the past year
+
+SELECT
+  member_casual,
+  EXTRACT(DAYOFWEEK FROM started_at) as weekday, -- 1=Sunday, 7=Saturday
+  EXTRACT(HOUR FROM started_at) as start_time,
+  COUNT(*) AS trips
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+GROUP BY 
+  member_casual,
+  weekday,
+  start_time
+ORDER BY 
+  trips desc,
+  weekday,
+  start_time
+
+-- Calculate most popular day and time for members
+
+SELECT
+  member_casual,
+  EXTRACT(DAYOFWEEK FROM started_at) as weekday, -- 1=Sunday, 7=Saturday
+  EXTRACT(HOUR FROM started_at) as start_time,
+  COUNT(*) AS trips
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+WHERE
+  member_casual = "member"
+GROUP BY 
+  member_casual,
+  weekday,
+  start_time
+ORDER BY 
+  trips desc,
+  weekday,
+  start_time
+
+-- Calculate most popular day and time for casual riders
+
+SELECT
+  member_casual,
+  EXTRACT(DAYOFWEEK FROM started_at) as weekday, -- 1=Sunday, 7=Saturday
+  EXTRACT(HOUR FROM started_at) as start_time,
+  COUNT(*) AS trips
+FROM
+  `gda-case-study-1-cyclitic.cyclitic_ride_data.full_year`
+WHERE
+  member_casual = "casual"
+GROUP BY 
+  member_casual,
+  weekday,
+  start_time
+ORDER BY 
+  trips desc,
+  weekday,
+  start_time
+
+

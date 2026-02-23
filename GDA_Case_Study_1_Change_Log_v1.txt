@@ -1,0 +1,43 @@
+# Changelog
+This file contains notable changes to the project
+
+version 1.5.0 (2-17-2026)
+
+## New
+	-created Google Slides Presentation to summarize the analysis, answer stakeholder questions, and 
+requested recommendations
+
+version 1.4.0 (2-16-2026)
+
+## New
+	-Created visuals in Tableau to show the most popular ride times during the week, the distribution of rides per month between casual riders and annual members, and the average ride length by month for both rider categories 
+	-ran queries to create tables showing most popular ride times during the week, the distribution of rides per month between casual riders and annual members, and the average ride length by month for both rider categories
+
+version 1.3.0 (02-11-2026)
+
+## New
+	-Uploaded all cleaned monthly data to BigQuery
+	-Aggregated all monthly data into new table called "full_year" in BigQuery using union all function
+	
+Version 1.2.0 (02-09-2026)
+
+
+## Changes
+	-removed columns start_station_name, start_station_id, 
+	end_station_name,end station id, start_lat, start_lng, end_lat, end_lng to remove data that is incomplete and will not be used used for analysis
+	-recalculated trip_duration using =MOD function to account for 	overnight trips
+	
+Version 1.0.0 (02-06-2026)
+
+## New
+
+	-Added column trip_duration to to calculate the length of each trip
+	-Added column day_of_week to track the day of the week each trip occurred 
+
+## Changes
+	-Split .csv files for the months of June, July, August, September, and October to allow upload to Google Sheets
+	-Formated trip_duration to HH:MM:SS
+	-Organized trips in chronological order based on started_at time and date
+	-Removed blank rows
+	-checked for duplicate entries
+	
