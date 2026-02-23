@@ -2,7 +2,7 @@
 📊 Cyclistic Membership Conversion Analysis
 Executive Summary
 
-(Your polished executive summary here — 6–8 strong sentences max.)
+This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing, with estimated revenue and conversion gains of 10–15% and 3–6%, respectively.
 
 Business Problem
 
@@ -12,7 +12,7 @@ Data Overview
 
 -12 months of ride data (02-01-2025 to 01-01-2026)
 -Source: Motivate International Inc. (Divvy Data License Agreement)
--Data size: [Add row count here if possible]
+-Data size: 5,552,092 rows
 -Tools: Google Sheets, BigQuery (SQL), Tableau
 
 
