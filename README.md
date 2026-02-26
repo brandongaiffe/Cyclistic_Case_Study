@@ -2,7 +2,7 @@
 # 📊 Cyclistic Membership Conversion Analysis
 
 ## Executive Summary
-This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing.
+This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, Google Sheets, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing.
 ---
 
 ## Business Problem
