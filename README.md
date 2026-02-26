@@ -2,8 +2,7 @@
 # 📊 Cyclistic Membership Conversion Analysis
 
 ## Executive Summary
-This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing, with estimated revenue and conversion gains of **10–15%** and **3–6%**, respectively.
-
+This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing.
 ---
 
 ## Business Problem
@@ -28,7 +27,7 @@ Cyclistic aims to increase long-term revenue by converting Casual Riders into An
 ### 2. Data Cleaning & Preparation
 - Initial exploratory analysis conducted in Google Sheets  
 - Standardized date/time formats  
-- Removed null and invalid ride durations  
+- Removed rides with null IDs, negative durations, and extreme outliers beyond operationally realistic thresholds
 - Engineered new features including:  
   - Ride duration (minutes)  
   - Day of week  
@@ -81,6 +80,11 @@ Cyclistic aims to increase long-term revenue by converting Casual Riders into An
 
 **Business Rationale:** Demonstrating clear financial advantages during peak usage windows can accelerate conversion among routine riders  
 
+## Limitations
+- Analysis based on historical observational data
+- No direct causal modeling performed
+- Revenue projections based on behavioral assumptions
+- No customer-level demographic data available
 ---
 
 ## Future Analytical Enhancements
