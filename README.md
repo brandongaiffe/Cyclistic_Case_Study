@@ -4,8 +4,11 @@
 
 ### Summary
 
-   This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, to identify high-potential Casual Riders and inform membership growth strategies. Using 12 months of ride data, Google Sheets, SQL, and Tableau, the project uncovers usage patterns, seasonal trends, and commuter behavior, translating insights into actionable recommendations. Key strategies include targeted seasonal campaigns, tiered summer memberships, and peak-hour dynamic pricing.
----
+This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, focused on identifying high-potential Casual Riders and informing membership growth strategies.
+
+Using 12 months of ride data across Google Sheets, SQL (BigQuery), and Tableau, the project analyzes usage patterns, seasonal trends, and commuter behavior.
+
+Insights are translated into actionable business recommendations, including targeted seasonal campaigns, tiered summer memberships, and peak-hour pricing optimization.
 
 ## Business Problem
 Cyclistic aims to increase long-term revenue by converting Casual Riders into Annual Members. This analysis identifies behavioral differences and high-probability conversion segments.
