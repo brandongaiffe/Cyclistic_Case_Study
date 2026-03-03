@@ -2,7 +2,7 @@
 # 🚲 Cyclistic Membership Conversion Analysis
 ---
 
-### Summary
+## Summary
 
 This repository presents an end-to-end analysis of Cyclistic, a bike-sharing service, focused on identifying high-potential Casual Riders and informing membership growth strategies.
 
